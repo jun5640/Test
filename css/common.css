@@ -1,0 +1,224 @@
+#parallax-wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    perspective: 1px;
+}
+
+.parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#parallax-A {
+	background-color: red;
+   	height: 150rem;
+}
+
+#parallax-B {
+	background-color: aqua;
+   	height: 500px;
+    transform: translateZ(-2px);
+}
+
+#parallax-C {
+	background-color: blueviolet;
+   	height: 500px;
+    transform: translateZ(-1px);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+img{
+    margin: 0;
+    padding: 0;
+}
+
+.btn_scroll{
+    position: absolute;
+    top: 900px;
+    left: 960px;
+}
+
+.img_slider_arrow{
+    position: absolute;
+    top: 819px;
+}
+
+.img_slider_btn{
+    position: absolute;
+    top: 800px;
+    width: 275px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.img_main_div{
+    position: absolute;
+    top:186px;
+}
+
+.img_main_content{
+    position: absolute;
+    z-index: 100;
+     width: 999px;
+    height: 481px; 
+    left: 460px;
+    top: 140px;
+}
+
+.img_main_content2{
+    position: absolute;
+    z-index: 100;
+    /* width: 999px;
+    height: 481px; */
+    left: 660px;
+    top: 140px;
+    opacity: 0;
+}
+
+
+.img_main_content3{
+    position: absolute;
+    z-index: 100;
+    /* width: 999px;
+    height: 481px; */
+    left: 860px;
+    top: 140px;
+    opacity: 0;
+}
+
+.img_text_explain{
+    position: absolute;
+    z-index: 1000;
+    top: 886px;
+}
+
+.img_btn_skill{
+    background: url("../img/이용기술버튼.png") no-repeat;
+    position: absolute;
+    z-index: 1000;
+    top: 926px;
+    left: 1400px;
+    width: 125px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.parallax {
+    /* Set a specific height */
+    min-height: 500px; 
+  
+    /* Create the parallax scrolling effect */
+    background-color:yellow;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+.center{
+    text-align: center !important;
+}
+
+.observer_target{
+    position: absolute;
+    background-color: yellow;
+    z-index: 100;
+}
+
+.detail{
+    vertical-align: top !important;
+    margin: 30px !important;
+    /* visibility: hidden; */
+}
+
+.useskill{
+    margin-top: 300px;
+    margin-bottom: 300px;
+}
+
+.half2one_animation
+{
+    animation-name: half2one;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+
+    transform-origin: bottom;
+
+    visibility: visible !important;
+}
+
+@keyframes half2one {
+    0% {
+      transform:  translate(0%,100%) scale(0.5);
+      opacity: 0.5;
+    }
+  
+    50% {
+      transform:  translate(0%, 50%) scale(0.8);
+      opacity: 0.8;
+    }
+  
+    100% {
+      transform:  translate(0%, 0%) scale(1.0);
+      opacity: 1;
+    }
+}
+
+.fadein_animation{
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.fadeout_animation{
+    animation-name: fadeout;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes fadein{
+    0% {
+        opacity: 0.5;
+      }
+    
+      50% {
+        opacity: 0.8;
+      }
+    
+      100% {
+        opacity: 1;
+      }
+}
+
+@keyframes fadeout{
+    0% {
+        opacity: 1;
+      }
+    
+      50% {
+        opacity: 0.5;
+      }
+    
+      100% {
+        opacity: 0;
+      }
+}
+
+
+
+  
+  
