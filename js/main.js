@@ -37,7 +37,7 @@ window.addEventListener("scroll", (event) => {
 
 function calcYPosition() {
   for (let i = 0; i < items.length; i++) {
-    let windowCenter = window.pageYOffset + window.innerHeight / 3;
+    let windowCenter = window.pageYOffset + window.innerHeight / 2.7;
 
     let rate = windowCenter / itemPositions[i];
 
