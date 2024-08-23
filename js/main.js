@@ -36,7 +36,7 @@ window.addEventListener("scroll", (event) => {
 });
 
 function calcYPosition() {
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 1; i < items.length; i++) {
     let windowCenter = window.pageYOffset + window.innerHeight / 2.7;
 
     let rate = windowCenter / itemPositions[i];
@@ -101,7 +101,7 @@ window.onload = function () {
     itemPositions.push(
       items[i].getBoundingClientRect().top + window.pageYOffset
     );
-    items[i].style.transform = "matrix(0.6,0,0,0.6,0,150)";
+    if(i != 0 )items[i].style.transform = "matrix(0.6,0,0,0.6,0,150)";
   }
 
   let sliderbtns = document.getElementsByClassName("img_slider_btn");
