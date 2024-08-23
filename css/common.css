@@ -48,6 +48,7 @@ img{
 .img_slider_arrow{
     position: absolute;
     top: 819px;
+    cursor: pointer;
 }
 
 .img_slider_btn{
@@ -57,6 +58,7 @@ img{
     height: 50px;
     border: none;
     cursor: pointer;
+    z-index: 2000;
 }
 
 .img_main_div{
@@ -98,6 +100,17 @@ img{
     position: absolute;
     z-index: 1000;
     top: 886px;
+}
+
+.left_fix{
+    position: fixed;
+    top:340px;
+}
+
+.img_dot{
+    position: absolute;
+    z-index: 1001;
+    top: 866px;
 }
 
 .img_btn_skill{

@@ -3,6 +3,29 @@ let wheelstate = -1;
 let items = [];
 let itemPositions = [];
 let preMain = 0;
+let navimgpaths = ["url('img/차체용버튼.png') no-repeat",
+"url('img/샤시용버튼.png') no-repeat",
+"url('img/배터리팩용버튼.png') no-repeat",
+"url('img/구동모터용버튼.png') no-repeat",
+"url('img/전기차배터리버튼.png') no-repeat",
+
+"url('img/엔진버튼.png') no-repeat",
+"url('img/기타버튼.png') no-repeat",
+"url('img/수소차연료전지버튼.png') no-repeat",
+];
+
+let navimgoverpaths = ["url('img/차체용버튼_over.png') no-repeat",
+"url('img/샤시용버튼_over.png') no-repeat",
+"url('img/배터리팩용버튼_over.png') no-repeat",
+"url('img/구동모터용버튼_over.png') no-repeat",
+"url('img/전기차배터리버튼_over.png') no-repeat",
+
+"url('img/엔진버튼_over.png') no-repeat",
+"url('img/기타버튼_over.png') no-repeat",
+"url('img/수소차연료전지버튼_over.png') no-repeat",
+];
+
+let navicount = 0;
 
 window.addEventListener("wheel", (event) => {
   calcYPosition();
@@ -18,15 +41,20 @@ function calcYPosition() {
 
     let rate = windowCenter / itemPositions[i];
 
+    
+
     if (rate < 0.6) rate = 0.6;
     else if (rate > 1) rate = 1;
 
     let mul = 1 - rate;
     let yoffset = 150 * mul;
 
+    let opacity = 0;
+    if(rate > 0.9)opacity = rate;
+
     //console.log("matrix(" + rate + ",0,0," + rate + ",0," + yoffset + ")");
-    items[i].style.transform =
-      "matrix(" + rate + ",0,0," + rate + ",0," + yoffset + ")";
+    items[i].style.transform = "matrix(" + rate + ",0,0," + rate + ",0," + yoffset + ")";
+    //items[i].style.opacity = opacity;
   }
 }
 
@@ -80,33 +108,75 @@ window.onload = function () {
 
   for (let i = 0; i < sliderbtns.length; i++) {
     sliderbtns[i].addEventListener("mouseover", function (event) {
-      if (preMain != event.target.value) {
+
+      let curMain = (parseInt(event.target.value) + (4 * navicount)).toString();
+
+      if (preMain != curMain) {
 
         document.getElementById(preMain).classList.remove("fadeout_animation");
         document.getElementById(preMain).classList.remove("fadein_animation");
-        document.getElementById(event.target.value).classList.remove("fadeout_animation");
-        document.getElementById(event.target.value).classList.remove("fadein_animation");
+        document.getElementById(curMain).classList.remove("fadeout_animation");
+        document.getElementById(curMain).classList.remove("fadein_animation");
 
         document.getElementById(preMain).classList.add("fadeout_animation");
-        document.getElementById(event.target.value).classList.add("fadein_animation");
-        preMain = event.target.value;
+        document.getElementById(curMain).classList.add("fadein_animation");
+        preMain = curMain;
       }
+      event.target.style.background = navimgoverpaths[parseInt(event.target.value) + (4 * navicount)];
+    });
+
+    sliderbtns[i].addEventListener("mouseout",(event)=>{
+      event.target.style.background = navimgpaths[parseInt(event.target.value) + (4 * navicount)];
     });
 
     sliderbtns[i].onclick = (event)=>{
       window.scrollTo({
-        top: itemPositions[parseInt(event.target.value)] - window.innerHeight / 4,
+        top: itemPositions[parseInt(event.target.value) + (4 * navicount)] - window.innerHeight / 4,
         behavior: "smooth",
       });
     };
   }
 
+  let sliderArrowBtns = document.getElementsByClassName("img_slider_arrow");
+  console.log(sliderArrowBtns);
+  for(let i = 0;i < sliderArrowBtns.length; i++)
+  {
+    sliderArrowBtns[i].addEventListener("click",(event)=>{
+      navicount++;
+      navicount = navicount % 2;
+      updateNaviBtn();
+      updatedot();
+    });
+  }
   // document.getElementById("btn").onclick = scrollaction;
   calcYPosition();
   //   $items.forEach((item) => {
   //     io.observe(item);
   //   });
 };
+
+function updateNaviBtn(){
+  let sliderbtns = document.getElementsByClassName("img_slider_btn");
+  for (let i = 0; i < sliderbtns.length; i++) {
+    sliderbtns[i].style.background = navimgpaths[i + (4 * navicount)]
+  }
+}
+
+function updatedot(){
+
+  let sliderdots = document.getElementsByClassName("img_dot");
+
+  if(navicount == 0)
+  {
+    sliderdots[0].src = "img/selected_dot.png";
+    sliderdots[1].src = "img/normal_dot.png";
+  }
+  else if(navicount == 1)
+  {
+    sliderdots[0].src = "img/normal_dot.png";
+    sliderdots[1].src = "img/selected_dot.png";
+  }
+}
 
 function scrollaction() {
   window.scrollTo({
